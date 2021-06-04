@@ -1,8 +1,4 @@
 {
-  "npmScope": "awai-components",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -10,25 +6,32 @@
     },
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "awai-components",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ZDQ1NGEwODQtMGJkZi00ZjlkLTgwNDQtYzc5ODI3MmU2Y2NlfHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
       }
     }
   },
-  "projects": {},
   "workspaceLayout": {
-    "appsDir": "demo",
+    "appsDir": "apps",
     "libsDir": "packages"
+  },
+  "projects": {
+    "show-room": {
+      "tags": []
+    },
+    "show-room-e2e": {
+      "tags": [],
+      "implicitDependencies": ["show-room"]
+    }
   }
 }

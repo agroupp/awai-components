@@ -1,23 +1,22 @@
 {
   "version": 2,
-  "projects": {},
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
   "generators": {
     "@nrwl/angular:application": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress",
       "strict": true,
-      "style": "scss",
       "prefix": "aw"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "strict": true,
-      "style": "scss",
       "prefix": "aw",
       "buildable": true
     },
@@ -25,5 +24,135 @@
       "style": "scss",
       "changeDetection": "OnPush"
     }
-  }
+  },
+  "projects": {
+    "show-room": {
+      "projectType": "application",
+      "root": "apps/show-room",
+      "sourceRoot": "apps/show-room/src",
+      "prefix": "aw",
+      "targets": {
+        "build": {
+          "executor": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/show-room",
+            "index": "apps/show-room/src/index.html",
+            "main": "apps/show-room/src/main.ts",
+            "polyfills": "apps/show-room/src/polyfills.ts",
+            "tsConfig": "apps/show-room/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/show-room/src/favicon.ico",
+              "apps/show-room/src/assets"
+            ],
+            "styles": [
+              "apps/show-room/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/show-room/src/environments/environment.ts",
+                  "with": "apps/show-room/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "executor": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "show-room:build:production"
+            },
+            "development": {
+              "browserTarget": "show-room:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "executor": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "show-room:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/show-room/src/**/*.ts",
+              "apps/show-room/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/show-room"
+          ],
+          "options": {
+            "jestConfig": "apps/show-room/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "show-room-e2e": {
+      "root": "apps/show-room-e2e",
+      "sourceRoot": "apps/show-room-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/show-room-e2e/cypress.json",
+            "tsConfig": "apps/show-room-e2e/tsconfig.e2e.json",
+            "devServerTarget": "show-room:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "show-room:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/show-room-e2e/**/*.{js,ts}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "show-room"
 }
