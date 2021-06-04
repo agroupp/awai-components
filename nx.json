@@ -12,20 +12,23 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
         "cacheableOperations": [
           "build",
           "lint",
           "test",
           "e2e"
-        ]
+        ],
+        "accessToken": "ZDQ1NGEwODQtMGJkZi00ZjlkLTgwNDQtYzc5ODI3MmU2Y2NlfHJlYWQtd3JpdGU=",
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
       }
     }
   },
   "projects": {},
   "workspaceLayout": {
-    "appsDir": "packages",
+    "appsDir": "demo",
     "libsDir": "packages"
   }
 }

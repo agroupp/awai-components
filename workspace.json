@@ -1,10 +1,29 @@
 {
-  
-  
   "version": 2,
-  
   "projects": {},
   "cli": {
-    "defaultCollection": "@nrwl/workspace"
+    "defaultCollection": "@nrwl/angular"
+  },
+  "generators": {
+    "@nrwl/angular:application": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress",
+      "strict": true,
+      "style": "scss",
+      "prefix": "aw"
+    },
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true,
+      "style": "scss",
+      "prefix": "aw",
+      "buildable": true
+    },
+    "@nrwl/angular:component": {
+      "style": "scss",
+      "changeDetection": "OnPush"
+    }
   }
 }
